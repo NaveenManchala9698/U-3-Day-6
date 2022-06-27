@@ -4,11 +4,15 @@ import {Card} from 'react-bootstrap'
 
 
 class SingleBook extends Component {
+
+   /*  state = {
+        selected: false
+    } */
     render() {
         return (
             <Card
-            key={this.props.book.asin}
-           onClick={(e) => this.props.changeBook('book')}   
+          // onClick={(e) => this.setState({selected: !this.state.selected})}   
+          onClick={(e) => this.props.changeBook(this.props.book.asin)}
             >
                 <Card.Img variant="top" src={this.props.book.img} />
                 <Card.Body>

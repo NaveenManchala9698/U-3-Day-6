@@ -1,6 +1,6 @@
 import { Component } from "react";
 import CommentList from "./CommentList";
-import { ListGroup } from 'react-bootstrap'
+import { Col, ListGroup } from 'react-bootstrap'
 
 class CommentArea extends Component {
     state = {
@@ -8,8 +8,15 @@ class CommentArea extends Component {
     };
 
     componentDidMount = () => {
-        this.fetchComments();
+        if(this.props.asin)
+        this.fetchComments(this.props.asin);
     };
+
+    componentDidUpdate = (prevProps, prevState) => {
+        if(this.props.asin && prevProps.asin !== this.props.asin) {
+            this.fetchComments(this.props.asin)
+        }
+    }
 
     fetchComments = async () => {
         try {
@@ -48,7 +55,12 @@ class CommentArea extends Component {
             <>
                 <h4> Book Comments</h4>
                 <ListGroup>
-                    {this.state.comments && <CommentList commentsArray={this.state.comments} />}
+                    {this.state.comments.map((bookComment) => (
+                        <Col>
+                        <p>Rating = {bookComment.rate}</p>
+                        <p>comments = {bookComment.comment}</p>
+                        </Col>
+                    )) }
                 </ListGroup>
             </>
 

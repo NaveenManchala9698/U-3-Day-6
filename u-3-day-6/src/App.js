@@ -20,6 +20,8 @@ class App extends Component {
     })
   }
 
+
+
   render() {
     return (
       <div className="App">
@@ -32,7 +34,7 @@ class App extends Component {
             </Col>
             <Col md={6}>
               <CommentArea
-                comments={this.state.comments}
+                asin={this.state.asin}
               />
             </Col>
           </Row>

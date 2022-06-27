@@ -5,6 +5,7 @@ import SingleBook from "./SingleBook";
 
 
 class BookList extends Component {
+
     render() {
         return (
             <Container>
@@ -12,7 +13,9 @@ class BookList extends Component {
 
                     {this.props.books && this.props.books.map(SelectedBook => (
                         <Col md={6}>
-                            <SingleBook book={SelectedBook}/>
+                            <SingleBook book={SelectedBook} 
+                            changeBook = {this.props.changeBook}
+                            />
                         </Col>
                     ))}
 
