@@ -8,15 +8,10 @@ class CommentArea extends Component {
     };
 
     componentDidMount = () => {
-        if(this.props.asin)
-        this.fetchComments(this.props.asin);
+        this.fetchComments();
     };
 
-    componentDidUpdate = (prevProps, prevState) => {
-        if(this.props.asin && prevProps.asin !== this.props.asin) {
-            this.fetchComments(this.props.asin)
-        }
-    }
+    
 
     fetchComments = async () => {
         try {
@@ -39,7 +34,7 @@ class CommentArea extends Component {
                 )
             }
             else {
-                alert("Errrrror!!")
+                console.log("Errrrror!!")
             }
 
 
