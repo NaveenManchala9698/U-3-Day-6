@@ -12,7 +12,7 @@ class BookList extends Component {
                 <Row>
 
                     {this.props.books && this.props.books.map(SelectedBook => (
-                        <Col md={6}>
+                        <Col md={6} key={SelectedBook.asin}>
                             <SingleBook book={SelectedBook} 
                             changeBook = {this.props.changeBook}
                             />

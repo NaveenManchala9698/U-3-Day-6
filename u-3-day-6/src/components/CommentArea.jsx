@@ -8,10 +8,14 @@ class CommentArea extends Component {
     };
 
     componentDidMount = () => {
-        this.fetchComments();
+       if(this.props.asin) this.fetchComments();
     };
 
-    
+    componentDidUpdate = (prevProps, prevState) => {
+        if(this.props.asin && prevProps.asin !== this.props.asin) {
+            this.fetchComments()
+        }
+    }
 
     fetchComments = async () => {
         try {
@@ -26,7 +30,6 @@ class CommentArea extends Component {
             if (response.ok) {
                 const data = await response.json()
                 console.log(data)
-
                 this.setState(
                     {
                         comments: data
@@ -36,8 +39,6 @@ class CommentArea extends Component {
             else {
                 console.log("Errrrror!!")
             }
-
-
         }
         catch (error) {
             console.log(error)
@@ -49,14 +50,15 @@ class CommentArea extends Component {
         return (
             <>
                 <h4> Book Comments</h4>
-                <ListGroup>
-                    {this.state.comments.map((bookComment) => (
-                        <Col>
+                
+                    {/* {this.state.comments && this.state.comments.map((bookComment) => (
+                        <Col key={bookComment._id}>
                         <p>Rating = {bookComment.rate}</p>
                         <p>comments = {bookComment.comment}</p>
                         </Col>
-                    )) }
-                </ListGroup>
+                    )) } */}
+                    {this.state.comments && <ListGroup><CommentList commentsArray={this.state.comments} /></ListGroup>}
+                
             </>
 
         )

@@ -8,12 +8,12 @@ import CommentArea from "./components/CommentArea";
 
 class App extends Component {
   state = {
-    comments: [],
+    asin: "",
   };
 
-  changeBook = (newBook) => {
+  changeBook = (newAsin) => {
     this.setState({
-      comments: newBook,
+      asin: newAsin,
     });
   };
 
@@ -26,7 +26,7 @@ class App extends Component {
               <BookList books={HistoryBooks} changeBook={this.changeBook} />
             </Col>
             <Col md={6}>
-              <CommentArea />
+              <CommentArea asin={this.state.asin} />
             </Col>
           </Row>
         </Container>

@@ -4,11 +4,13 @@ import SingleComment from "./SingleComment";
 class CommentList extends Component {
     render() {
         return (
-               <li>
-                   { this.props.CommentsArray && this.props.CommentsArray.map((comment) => (
-                        <SingleComment bookComments={comment}/>
-                    ))}
-               </li>
+               
+                   <>
+                       { this.props.commentsArray && this.props.commentsArray.map((comment) => (
+                        <li key={comment._id}><SingleComment  bookComments={comment}/></li>
+                        ))}
+                   </>
+               
         )
 
     }
